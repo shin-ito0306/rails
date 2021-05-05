@@ -27,11 +27,17 @@ class TodolistsController < ApplicationController
     redirect_to todolist_path(list.id)
   end
   
+  def destroy
+    list = List.find(params[:id])
+    list.destroy
+    redirect_totodolists_path
+  end
+  
   
   private
   
   def list_params
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body, :image)
   end
   
 end
